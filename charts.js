@@ -88,7 +88,7 @@ function buildCharts(sample) {
     // Deliverable 1: 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order 
     // so the otu_ids with the most bacteria are last. 
-    var yticks = otu_idsData.slice(0, 10).map(ids => "OTU " + ids + " ").reverse(); 
+    var yticks = otu_idsData.slice(0, 10).map(ids => "OTU " + ids).reverse(); 
 
     // Deliverable 1: 8. Create the trace for the bar chart. 
     var barData = [{
@@ -101,7 +101,9 @@ function buildCharts(sample) {
 
     // Deliverable 1: 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Top 10 Bacteria Cultures Found"
+      title: "Top 10 Bacteria Cultures Found",
+      width: 400, 
+      height: 400 
     };
 
     // Deliverable 1: 10. Use Plotly to plot the data with the layout. 
@@ -116,7 +118,7 @@ function buildCharts(sample) {
       marker: {
         color: otu_idsData,
         size: sample_valuesData, 
-        colorscale: 'Earth'
+        colorscale: 'Picnic'
       }
     };
 
@@ -125,7 +127,8 @@ function buildCharts(sample) {
     // Deliverable 2: 2. Create the layout for the bubble chart.
     var bubbleLayout = {
       title: 'Bacteria Cultures Per Sample',
-      xaxis: { title: "OTU ID" }
+      xaxis: { title: "OTU ID" }, 
+      hovermode:'closest'
     };
     // Deliverable 2: 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot("bubble", bubbleData, bubbleLayout);
@@ -137,7 +140,7 @@ function buildCharts(sample) {
 		    mode: "gauge+number", 
         domain: { x: [0, 1], y: [0, 1] },
         value: wash_freq, 
-        title: { text: "Belly Button Washing Frequency Scrubs per Week"},
+        title: { text: "<b> Belly Button Washing Frequency </b> <br> Scrubs per Week" },
         delta: { reference: 100 }, 
         gauge: {
           axis: { range: [0, 10], tickwidth: 1, tickcolor: "black" }, 
